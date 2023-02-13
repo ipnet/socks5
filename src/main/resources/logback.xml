@@ -1,0 +1,33 @@
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>
+                ./socks5-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <maxFileSize>20MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="io.netty" level="INFO"/>
+    <logger name="org.iproute" level="INFO"/>
+
+    <root level="info">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="file"/>
+    </root>
+
+</configuration>
