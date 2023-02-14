@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 group 'org.iproute'
@@ -22,12 +21,9 @@ jar {
     manifest {
         attributes 'Main-Class': 'org.iproute.SocksServer'
     }
-}
-// Output to build/libs/shadow.jar
-shadowJar {
-    configurations = [project.configurations.compileClasspath]
-    archiveBaseName.set('socks5')
-    archiveClassifier.set("")
-    archiveVersion.set("")
-
+    archiveVersion = ""
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }

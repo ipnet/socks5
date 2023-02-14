@@ -7,18 +7,18 @@
 on windows
 
 ```bat
-gradlew.bat clean shadowJar
+gradlew.bat clean build
 ```
 
 on linux
 
 ```shell
-./gradlew clean shadowJar
+./gradlew clean build
 ```
 
 ## how to run
 
-find `socks5.jar` from directory `build/lib/`
+find `socks5.jar` from directory `build/libs/`
 
 start on default port `1080`
 
